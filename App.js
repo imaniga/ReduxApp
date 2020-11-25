@@ -1,21 +1,82 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import AllBooks from './src/screens/AllBooks/AllBooks'
+import ReadingQueue from './src/screens/ReadingQueue/ReadingQueue'
+import Favourites from './src/screens/Favourites/Favourites'
+import BookDetails from './src/screens/BookDetails/BookDetails'
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {HeaderColor} from './src/utils/colors'
+import {BookContextProvider} from './src/context/book-context'
+import routes from './src/utils/routes'
 
-export default function App() {
+
+const Stack = createStackNavigator();
+
+function FavouritesStack() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Stack.Navigator
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: HeaderColor,
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    }}>
+      <Stack.Screen name={routes.favourites} component={Favourites} />
+    </Stack.Navigator>
+  );
+}
+function ReadingQueueStack() {
+  return (
+    <Stack.Navigator
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: HeaderColor,
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    }}>
+      <Stack.Screen name={routes.readingQueue} component={ReadingQueue} />
+    </Stack.Navigator>
+  );
+}
+function AllBooksStack() {
+  return (
+    <Stack.Navigator
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: HeaderColor,
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    }}>
+      <Stack.Screen name={routes.all} component={AllBooks} />
+      <Stack.Screen name ={routes.bookDetails} component={BookDetails}/>
+    </Stack.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const Tab = createBottomTabNavigator()
+
+export default function App() {
+  return (
+    <BookContextProvider>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen  name="All books" component={AllBooksStack} />
+        <Tab.Screen name="Favourites" component={FavouritesStack} />
+        <Tab.Screen name="Reading queue" component={ReadingQueueStack} />
+      </Tab.Navigator>
+    </NavigationContainer>
+    </BookContextProvider>
+  );
+}
+
+
