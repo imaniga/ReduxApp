@@ -1,39 +1,48 @@
-import React, {useState, useContext} from 'react'
-import {View,Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native'
+import React, {useState, useEffect} from 'react'
+import {View,Text, TextInput, TouchableOpacity} from 'react-native'
 import styles from './styles'
-import { BookContext } from '../../context/book-context'
+import {editBook, createBook} from '../../apis/books-helper'
+import {getGenresFromApi, createGenre} from '../../apis/genres-helper'
 
 
-const BookDetails = ({route}) => {
+const BookDetails = ({route, navigation}) => {
 const {book} = route.params     
 
-const [inputs, setInputs] = useState(book? {name:book.name, author:book.author, genre:book.genre.name}:{name:'', author:'', genre:''})
-const [state, dispatch] = useContext(BookContext);
-const addBook = () => {
-    dispatch({
-        type: "ADD_BOOK",
-        payload: { name: inputs.name, author:inputs.author, genre:inputs.genre }
-      });
-}
-
-const editBook = () => { 
-    dispatch({
-        type: "UPDATE_BOOK",
-        payload: {...book, name: inputs.name, author:inputs.author, genre:inputs.genre}
-      });   
-}
+const [inputs, setInputs] = useState(book? {name:book.name, author:book.author, genre:book.genre}:{name:'', author:'', genre:{}})
+const [allGenres, setAllGenres] = useState([]);
 
 const onPressButton = () =>{
-  if(inputs.title&&inputs.author&&inputs.genre)
+   console.log("heeey sunt aiciii") 
+  if(inputs.name&&inputs.author&&inputs.genre.name)
   if(book) {
-      editBook(book);
+      manageGenre(inputs.genre.name)
+      editBook({...book, name:inputs.name, author:inputs.author}, inputs.genre._id);
   }
   else {
-      addBook();
+      console.log('am ajuns aiiiici')
+      manageGenre(inputs.genre.name)
+      console.log("m am jucat cu genuuuu")
+      createBook({name:inputs.name, author:inputs.author}, inputs.genre._id)
   }    
 }
 
+useEffect(() => {
+    getGenresFromApi(setAllGenres)
+}, [navigation])
 
+const manageGenre = (name) => {
+    name=name.toLowerCase()
+    const genre = allGenres.find(genre => genre.name === name.toLowerCase())
+    if(genre){
+        setInputs({...inputs, genre:{...genre}})
+    }
+    else {
+        createGenre(name, function(genre){setInputs({...inputs, genre: {...genre}})})
+    }
+    console.log(genre)
+}
+
+console.log(allGenres)
 
     return (
         <View>
@@ -54,8 +63,8 @@ const onPressButton = () =>{
             <View style={styles.container}>
             <Text style={styles.label}>Book genre</Text>
             <TextInput style={styles.input} 
-            value={inputs.genre}
-            onChangeText={val=>setInputs({...inputs, genre:val})}
+            value={inputs.genre.name}
+            onChangeText={val=>setInputs({...inputs, genre:{...inputs.genre, name:val}})}
             />
             </View>    
             <View>

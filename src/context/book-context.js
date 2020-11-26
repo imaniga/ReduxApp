@@ -1,9 +1,9 @@
 import React, {useReducer, createContext, useState} from 'react';
+import {ADD_TO_FAVOURITES, ADD_TO_READ,REMOVE_FROM_FAVOURITES,REMOVE_FROM_READING} from './actions'
 // import AsyncStorage from '@react-native-community/async-storage';
 
 export const BookContext = createContext();
  const  INITIAL_STATE =  {
-     books: [],
      favouriteBooks:[],
      readingQueue:[],
      loading: false,
@@ -13,41 +13,26 @@ export const BookContext = createContext();
 
 const reducer = (state, action) => {
     switch (action.type) {
-        case "GET_BOOKS":
-            return {
-                ...state,
-                books: [...action.payload]
-            }
-        case "ADD_BOOK_TO_READ":
+        case ADD_TO_READ:
             return {
                 ...state,
                 readingQueue : [...state.readingQueue,{...action.payload}]
             };
-        case "ADD_BOOK_TO_FAVOURITES":
+        case ADD_TO_FAVOURITES:
             return {
                 ...state,
                 favouriteBooks : [...state.favouriteBooks,{...action.payload}]
             };
-        case "ADD_BOOK":
+        case REMOVE_FROM_READING :
             return {
-                books : [...state.books,{...action.payload}]
-            };    
-        case "DELETE_BOOK":
+                ...state,
+                readingQueue: state.readingQueue.filter(book => book._id!==action.payload)
+            }
+        case REMOVE_FROM_FAVOURITES :
             return {
-                books : state.books.filter(
-                    book => book.id !== action.payload
-                )
-            };
-        case "UPDATE_BOOK":
-            return {
-                books: state.books.map(book=>{
-                    if(book.id===action.payload.id){
-                        const obj = {...action.payload}
-                        return obj
-                    }
-                    else return book;
-                })
-            }    
+                ...state,
+                favouriteBooks: state.favouriteBooks.filter(book => book._id!==action.payload)
+            }              
         case "START":
             return {
                 loading: true
