@@ -1,78 +1,77 @@
-import {StyleSheet} from 'react-native'
-import {Green,HeaderColor} from '../../utils/colors'
+import { StyleSheet } from "react-native";
+import { Green, HeaderColor, Grey } from "../../utils/colors";
 
 const styles = StyleSheet.create({
-    container:{
-        marginHorizontal:24,
-        borderRadius:10,
-        backgroundColor:'white',
-        marginTop:16,
-        marginBottom:8,
-        flexDirection:'row',
-        shadowColor: "#000",
-        shadowOffset: {
-	    width: 0,
-	    height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
+  container: {
+    marginHorizontal: 24,
+    borderRadius: 10,
+    backgroundColor: "white",
+    marginTop: 16,
+    marginBottom: 8,
+    flexDirection: "row",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
     },
-    photoContainer:{
-        flex:1
-    },
-    infoContainer:{
-        flex:3, 
-        // backgroundColor:'red',
-        paddingLeft:16,
-        paddingTop:8
-    },
-    
-    photo:{
-        backgroundColor:'grey',
-        width:50,
-        height:60,
-        alignSelf:'center',
-        marginTop:'auto',
-        marginBottom:'auto'
-    },
-    title:{
-        fontSize:18, fontWeight:'bold'
-    }, 
-    buttonsContainer:{
-        flexDirection:'column',
-        marginTop:8,
-        paddingRight:40
-    },
-    button:{
-        marginBottom:8,
-        backgroundColor:Green,
-        borderRadius:6,
-        justifyContent:'center',
-        alignItems:'center'
-    },
-    buttonText:{
-        color:'white',
-        marginHorizontal:4,
-        marginVertical:4,
-    },
-    bookRead:{
-        color:Green,
-        marginBottom:8
-    },
-    deleteContainer:{
-        marginHorizontal:24,
-        justifyContent:'flex-end',
-        flexDirection:'row',
-        paddingRight:12
-    },
-    deleteText: {
-      color:HeaderColor,
-      
-    },
-    deleteBtn:{
-        marginLeft:16
-    }
-})
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  photoContainer: {
+    flex: 1,
+  },
+  infoContainer: {
+    flex: 3,
+    paddingLeft: 16,
+    paddingTop: 8,
+  },
 
-export default styles
+  photo: {
+    backgroundColor: Grey,
+    width: 50,
+    height: 60,
+    alignSelf: "center",
+    marginTop: "auto",
+    marginBottom: "auto",
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  buttonsContainer: {
+    flexDirection: "column",
+    marginTop: 8,
+    paddingRight: 40,
+  },
+  button: {
+    marginBottom: 8,
+    backgroundColor: Green,
+    borderRadius: 6,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "white",
+    marginHorizontal: 4,
+    marginVertical: 4,
+  },
+  bookRead: {
+    color: Green,
+    marginBottom: 8,
+  },
+  deleteContainer: {
+    marginHorizontal: 24,
+    justifyContent: "flex-end",
+    flexDirection: "row",
+    paddingRight: 12,
+  },
+  deleteText: {
+    color: HeaderColor,
+  },
+  deleteBtn: {
+    marginLeft: 16,
+  },
+});
+
+export default styles;
