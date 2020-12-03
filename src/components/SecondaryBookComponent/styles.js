@@ -1,11 +1,12 @@
 import { StyleSheet } from "react-native";
+import { White } from "../../utils/colors";
 
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 8,
     flexDirection: "row",
     marginVertical: 8,
-    backgroundColor: "white",
+    backgroundColor: White,
     borderRadius: 6,
     shadowColor: "#000",
     shadowOffset: {
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     marginBottom: "auto",
-    color: "white",
+    color: White,
     fontSize: 18,
   },
   text: {

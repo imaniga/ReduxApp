@@ -1,11 +1,12 @@
 import { StyleSheet } from "react-native";
+import { White } from "../../utils/colors";
 
 const styles = StyleSheet.create({
   headerButton: {
     marginRight: 16,
   },
   headerButtonText: {
-    color: "white",
+    color: White,
     fontSize: 28,
   },
 });

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { Green } from "../../utils/colors";
+import { Green, Black, White } from "../../utils/colors";
 
 const styles = StyleSheet.create({
   input: {
@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginBottom: 16,
     borderBottomWidth: 1,
-    borderBottomColor: "black",
+    borderBottomColor: Black,
   },
   container: {
     marginHorizontal: 8,
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   btnText: {
-    color: "white",
+    color: White,
     fontSize: 14,
   },
 });

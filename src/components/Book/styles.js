@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
-import { Green, HeaderColor, Grey } from "../../utils/colors";
+import { Green, HeaderColor, Grey, White } from "../../utils/colors";
 
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 24,
     borderRadius: 10,
-    backgroundColor: "white",
+    backgroundColor: White,
     marginTop: 16,
     marginBottom: 8,
     flexDirection: "row",
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttonText: {
-    color: "white",
+    color: White,
     marginHorizontal: 4,
     marginVertical: 4,
   },
