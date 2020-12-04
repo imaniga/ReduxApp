@@ -9,6 +9,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { HeaderColor } from "./src/utils/colors";
 import { BookContextProvider } from "./src/context/book-context";
 import routes from "./src/utils/routes";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import reducers from "./src/redux/reducers";
 
 const Stack = createStackNavigator();
 
@@ -69,7 +72,7 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <BookContextProvider>
+    <Provider store={createStore(reducers)}>
       <NavigationContainer>
         <Tab.Navigator>
           <Tab.Screen name="All books" component={AllBooksStack} />
@@ -77,6 +80,6 @@ export default function App() {
           <Tab.Screen name="Reading queue" component={ReadingQueueStack} />
         </Tab.Navigator>
       </NavigationContainer>
-    </BookContextProvider>
+    </Provider>
   );
 }
