@@ -7,11 +7,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { HeaderColor } from "./src/utils/colors";
-import { BookContextProvider } from "./src/context/book-context";
 import routes from "./src/utils/routes";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
-import reducers from "./src/redux/reducers";
+import { store, persistor } from "./src/redux/storeConfig";
+import { PersistGate } from "redux-persist/integration/react";
 
 const Stack = createStackNavigator();
 
@@ -72,14 +71,16 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <Provider store={createStore(reducers)}>
-      <NavigationContainer>
-        <Tab.Navigator>
-          <Tab.Screen name="All books" component={AllBooksStack} />
-          <Tab.Screen name="Favourites" component={FavouritesStack} />
-          <Tab.Screen name="Reading queue" component={ReadingQueueStack} />
-        </Tab.Navigator>
-      </NavigationContainer>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <NavigationContainer>
+          <Tab.Navigator>
+            <Tab.Screen name="All books" component={AllBooksStack} />
+            <Tab.Screen name="Favourites" component={FavouritesStack} />
+            <Tab.Screen name="Reading queue" component={ReadingQueueStack} />
+          </Tab.Navigator>
+        </NavigationContainer>
+      </PersistGate>
     </Provider>
   );
 }
