@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { ScrollView } from "react-native";
 import SecondaryBookComponent from "../../components/SecondaryBookComponent/SecondaryBookComponent";
 import { useSelector, useDispatch } from "react-redux";
